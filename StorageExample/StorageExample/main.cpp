@@ -22,13 +22,17 @@ buffer getFileData(const std::wstring& path) {
 	throw std::exception("Unable to open file.");
 }
 
+void storeData(const buffer& data, const FileStorage& storage)
+{
+	auto storageFilePath = storage.getFilePath();
+	storage.store(data, storageFilePath);
+}
+
 int main() {
-	// Collect Data
 	auto dataToStore = getFileData(L"C:\\important.txt");
-	
-	// Store data
 	FileStorage storage;
-	storage.store(dataToStore);
+
+	storeData(dataToStore, storage)
 
 	return 0;
 }

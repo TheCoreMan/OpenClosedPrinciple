@@ -26,15 +26,15 @@ FileStorage::~FileStorage()
 {
 }
 
-std::wstring FileStorage::getFileName()
+std::wstring FileStorage::getFilePath()
 {
-	return std::wstring(std::to_wstring(rand()) + L".storagefile");
+	return std::wstring(this->STORAGE_FOLDER + std::to_wstring(rand()) + L".storagefile");
 }
 
-void FileStorage::store(const buffer& data) 
+void FileStorage::store(const buffer& data, const std::wstring& path) 
 {
 	std::wofstream output;
-	output.open(this->STORAGE_FOLDER + this->getFileName());
+	output.open(path);
 	output << data[0];
 	output.close();
 }
