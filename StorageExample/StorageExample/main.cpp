@@ -53,6 +53,7 @@ InterfaceToStorage* getCorrectStorage(ConfigurationMode::Type operatingMode) {
 										SecretStorage* storage = new SecretStorage();
 										return storage;
 	}
+		// To add the communications, we would only need to add it here. 
 	default:
 		throw std::exception("Unknown operating mode.");
 	}
