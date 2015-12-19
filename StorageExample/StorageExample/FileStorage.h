@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Buffer.h"
+#include "InterfaceToStorage.h"
 
 
-class FileStorage
+class FileStorage : public InterfaceToStorage
 {
 public:
 	FileStorage();
 	virtual ~FileStorage();
-	void store(const buffer& data, const std::wstring& path) const;
+	virtual void store(const buffer& data);
 	std::wstring getFilePath() const;
 private:
 	const std::wstring STORAGE_FOLDER = L"c:\\storage\\";

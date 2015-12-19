@@ -23,10 +23,9 @@ buffer getFileData(const std::wstring& path) {
 	throw std::exception("Unable to open file.");
 }
 
-void storeData(const buffer& data, const FileStorage& storage)
+void storeData(const buffer& data, InterfaceToStorage& storage)
 {
-	auto storageFilePath = storage.getFilePath();
-	storage.store(data, storageFilePath);
+	storage.store(data);
 }
 
 namespace ConfigurationMode {
@@ -55,14 +54,10 @@ int main() {
 										 storeData(dataToStore, storage);
 										 break; 
 	}
-		// Oh no, now we need the secret storage :(
-		// Well, let's just... Copy and paste?
-		// Ugh, smells horrible ...
 	case ConfigurationMode::SECRET: {
 										SecretStorage storage;
-										// Oh no! This doesn't compile! What, should I copy this function too?
-										// There must be a better way...
 										storeData(dataToStore, storage);
+										break;
 	}
 	default:
 		break;

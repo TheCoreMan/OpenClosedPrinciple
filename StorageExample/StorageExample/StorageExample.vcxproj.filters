@@ -21,12 +21,21 @@
     <ClCompile Include="FileStorage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SecretStorage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileStorage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SecretStorage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfaceToStorage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

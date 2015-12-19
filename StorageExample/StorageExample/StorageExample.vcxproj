@@ -66,10 +66,13 @@
   <ItemGroup>
     <ClCompile Include="FileStorage.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SecretStorage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="FileStorage.h" />
+    <ClInclude Include="InterfaceToStorage.h" />
+    <ClInclude Include="SecretStorage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

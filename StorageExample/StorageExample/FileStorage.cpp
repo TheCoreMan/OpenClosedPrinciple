@@ -31,8 +31,9 @@ std::wstring FileStorage::getFilePath() const
 	return std::wstring(this->STORAGE_FOLDER + std::to_wstring(rand()) + L".storagefile");
 }
 
-void FileStorage::store(const buffer& data, const std::wstring& path) const
+void FileStorage::store(const buffer& data)
 {
+	std::wstring path = this->getFilePath();
 	std::wofstream output;
 	output.open(path);
 	output << data[0];

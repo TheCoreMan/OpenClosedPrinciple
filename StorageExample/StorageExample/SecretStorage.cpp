@@ -31,8 +31,9 @@ std::wstring SecretStorage::getSecretPath() const
 	return std::wstring(this->STORAGE_FOLDER + std::to_wstring(rand()) + L".storageSecret");
 }
 
-void SecretStorage::store(const buffer& data, const std::wstring& path) const
+void SecretStorage::store(const buffer& data)
 {
+	std::wstring path = getSecretPath();
 	std::wofstream output;
 	output.open(path);
 	output << data[0];
