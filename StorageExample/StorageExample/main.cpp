@@ -28,11 +28,38 @@ void storeData(const buffer& data, const FileStorage& storage)
 	storage.store(data, storageFilePath);
 }
 
+namespace ConfigurationMode {
+	enum Type {
+		REGULAR,
+		SECRET,
+		COMMUNICATION
+	};
+}
+
+
+ConfigurationMode::Type getOperationModeFromConfiguration() {
+	// imagine this is from a configuration...
+	return ConfigurationMode::REGULAR;
+}
+
 int main() {
 	auto dataToStore = getFileData(L"C:\\important.txt");
-	FileStorage storage;
-
-	storeData(dataToStore, storage)
+	
+	
+	auto operatingMode = getOperationModeFromConfiguration();
+	switch (operatingMode)
+	{
+	case ConfigurationMode::REGULAR: {
+										 FileStorage storage;
+										 storeData(dataToStore, storage);
+										 break; 
+	}
+	// Wait, does anyone remember what happens if we need the Communication mode, or Secret mode?
+	// Nah, don't worry about it, it'll probably never change >:)
+	default:
+		break;
+	}
+	
 
 	return 0;
 }
