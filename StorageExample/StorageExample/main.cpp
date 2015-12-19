@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
 
+#include "Buffer.h"
+#include "FileStorage.h"
 
-typedef std::vector<char> buffer;
 
 buffer getFileData(const std::wstring& path) {
 	std::streampos size;
@@ -12,8 +12,7 @@ buffer getFileData(const std::wstring& path) {
 	if (file.is_open())
 	{
 		size = file.tellg();
-		auto buf = buffer(size.operator+(1), '\0');
-		
+		auto buf = buffer(size.operator+(1), '\0');		
 
 		file.seekg(0, std::ios::beg);
 		file.read(buf.data(), size);
@@ -23,13 +22,13 @@ buffer getFileData(const std::wstring& path) {
 	throw std::exception("Unable to open file.");
 }
 
-void store(const buffer& data) {
-	std::cout << data.data() << std::endl;
-}
-
 int main() {
+	// Collect Data
 	auto dataToStore = getFileData(L"C:\\important.txt");
-	store(dataToStore);
+	
+	// Store data
+	FileStorage storage;
+	storage.store(dataToStore);
 
 	return 0;
 }
