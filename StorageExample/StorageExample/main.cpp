@@ -42,27 +42,28 @@ ConfigurationMode::Type getOperationModeFromConfiguration() {
 	return ConfigurationMode::REGULAR;
 }
 
-int main() {
-	auto dataToStore = getFileData(L"C:\\important.txt");
-	
-	
-	auto operatingMode = getOperationModeFromConfiguration();
+InterfaceToStorage* getCorrectStorage(ConfigurationMode::Type operatingMode) {
 	switch (operatingMode)
 	{
 	case ConfigurationMode::REGULAR: {
-										 FileStorage storage;
-										 storeData(dataToStore, storage);
-										 break; 
+										 FileStorage* storage = new FileStorage();
+										 return storage;
 	}
 	case ConfigurationMode::SECRET: {
-										SecretStorage storage;
-										storeData(dataToStore, storage);
-										break;
+										SecretStorage* storage = new SecretStorage();
+										return storage;
 	}
 	default:
-		break;
+		throw std::exception("Unknown operating mode.");
 	}
+}
+
+int main() {
+	auto dataToStore = getFileData(L"C:\\important.txt");
 	
+	auto operatingMode = getOperationModeFromConfiguration();
+	InterfaceToStorage* correctStorage = getCorrectStorage(operatingMode);
+	correctStorage->store(dataToStore);
 
 	return 0;
 }
