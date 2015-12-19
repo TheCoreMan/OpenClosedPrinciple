@@ -3,6 +3,7 @@
 
 #include "Buffer.h"
 #include "FileStorage.h"
+#include "SecretStorage.h"
 
 
 buffer getFileData(const std::wstring& path) {
@@ -54,8 +55,15 @@ int main() {
 										 storeData(dataToStore, storage);
 										 break; 
 	}
-	// Wait, does anyone remember what happens if we need the Communication mode, or Secret mode?
-	// Nah, don't worry about it, it'll probably never change >:)
+		// Oh no, now we need the secret storage :(
+		// Well, let's just... Copy and paste?
+		// Ugh, smells horrible ...
+	case ConfigurationMode::SECRET: {
+										SecretStorage storage;
+										// Oh no! This doesn't compile! What, should I copy this function too?
+										// There must be a better way...
+										storeData(dataToStore, storage);
+	}
 	default:
 		break;
 	}

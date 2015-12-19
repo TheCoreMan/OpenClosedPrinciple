@@ -1,4 +1,4 @@
-#include "FileStorage.h"
+#include "SecretStorage.h"
 
 #include <fstream>
 #include <random>
@@ -7,7 +7,7 @@
 #include <Windows.h>
 
 
-FileStorage::FileStorage()
+SecretStorage::SecretStorage()
 {
 	auto retVal = ::CreateDirectoryW(
 		STORAGE_FOLDER.data(),	// Create the directory in this path.
@@ -22,16 +22,16 @@ FileStorage::FileStorage()
 }
 
 
-FileStorage::~FileStorage()
+SecretStorage::~SecretStorage()
 {
 }
 
-std::wstring FileStorage::getFilePath() const
+std::wstring SecretStorage::getSecretPath() const
 {
-	return std::wstring(this->STORAGE_FOLDER + std::to_wstring(rand()) + L".storagefile");
+	return std::wstring(this->STORAGE_FOLDER + std::to_wstring(rand()) + L".storageSecret");
 }
 
-void FileStorage::store(const buffer& data, const std::wstring& path) const
+void SecretStorage::store(const buffer& data, const std::wstring& path) const
 {
 	std::wofstream output;
 	output.open(path);
